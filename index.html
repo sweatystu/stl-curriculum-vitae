@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<!--
+    (c) Stuart Lambert 2018
+    curriculum Vitae
+-->
+
+<html lang="en">
+    <head>
+        <title>Stuart Lambert - CV</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+
+        <!-- Style Sheets -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<!-- Plugins -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!-- JQuery Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
+    </head>
+
+    <body class="w3-light-grey">
+
+        <!-- Layout -->
+        <div id="layout_cols">
+
+
+            <div id="left_col">
+                <!-- Left Column -->
+                
+                <div>
+                    <div class="w3-blue w3-wide"><!-- Title -->
+                        <h1>Stuart<br />Lambert</h1>
+                    </div>
+                    <div class="w3-small"><!-- Introduction -->
+                        <p>I am a skilled reporting engineer with a scientific background.</p>
+                        <p>I aim to be an expert in providing the most relevant and consumable management information possible.</p>
+                    </div>
+                    <div><!-- Qualifications -->
+                        <h3>Qualifications</h3>
+                        <ul>
+                           <li>MChem<br /><span>Chemistry with External Placement<br />2007 St Andrews</span></li>
+                           <li>PgDip<br/><span>Business Analytics<br />2018 <abbr title="Manchester Metropolitan University">MMU</abbr></span></li>
+                        </ul>
+                    </div>
+                    <div><!-- Contact Details -->
+                        <h3>Contact</h3>
+                        <p><i class="material-icons">email</i> <a href="mailto:stuart.t.lambert@gmail.com">stuart.t.lambert@gmail.com</a></p>
+                        <p><i class="material-icons">phone</i> +44 (0)7 853 252 108</p>
+                        <p><i class="material-icons">home</i> Cheshire, UK</p>
+                    </div>
+                </div>
+
+            </div><!-- End of Left Column -->
+
+
+
+            <div id="right_col">
+                <!-- Right Column -->
+
+                <!-- Navigation -->
+                <nav>
+                    <div onclick="display_card($(this), 'key_achievements');">Key Achievements</div>
+                    <div onclick="display_card($(this), 'employment');">Employment</div>
+                    <div onclick="display_card($(this), 'education');">Education</div>
+                    <div onclick="display_card($(this), 'other');">Other</div>
+                    <div onclick="display_card($(this), 'downloads');">Downloads</div>
+                </nav><!-- End of Navigation -->
+
+                <div id="key_achievements">
+                    <div>
+                        <h2>Key Achievements</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                </div>
+
+                <div id="employment">
+                    <div>
+                        <h2>Employment</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                </div>
+
+                <div id="education">
+                    <div>
+                        <h2>Education</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                </div>
+
+                <div id="other">
+                    <div>
+                        <h2>References</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                    <div>
+                        <h2>Courses</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                </div>
+
+                <div id="downloads">
+                    <div>
+                        <h2>Downloads</h2>
+                    </div>
+                    <div>
+                        <p>Test</p>
+                    </div>
+                </div>
+
+            </div><!-- End of Right Column -->
+        </div>
+        <!-- End of Page Layout -->
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Stuart Lambert - Updated October 2018</p>
+            <p>Made with <a href="https://jquery.com/">JQuery</a>, <a href="https://www.w3schools.com/w3css/">w3.css</a> and <a href="https://material.io/icons/">Material Icons</a></p>
+        </footer>
+
+
+
+
+        <!-- Scripts to apply page formatting and make page interactive -->
+        <script>
+
+            // Structural Formatting Functions
+            function document_formats() {
+                // Structure
+                $('#layout_cols').attr('class', 'w3-row-padding w3-container');
+                $('#layout_cols > #left_col').attr('class', 'w3-col l3');
+                $('#layout_cols > #right_col').attr('class', 'w3-col l9');
+                // Cards
+                $('#layout_cols > div > div').each(function(){
+                    $(this).attr('class', 'w3-card-2 w3-margin-top w3-white w3-text-blue-grey w3-justify');
+                });
+                // Divs within cards
+                $('#layout_cols > div > div > div').each(function(){
+                    $(this).attr('class', $(this).attr('class') + ' w3-container');
+                });
+                // Footer
+                $('#footer').attr('class', 'w3-container w3-small w3-blue-grey w3-center w3-margin-top');
+                // Lists
+                $('ul').each(function(){
+                    $(this).attr('class', $(this).attr('class') + ' w3-ul');
+                });
+                $('ul span').each(function(){
+                    $(this).attr('class', $(this).attr('class') + ' w3-small w3-text-grey');
+                });
+            };
+
+            function hide_cards() {
+                $('#right_col > div').each(function(){
+                    $(this).hide();
+                });
+            };
+
+            // Formatting Functions
+            function format_nav(){
+                $('#layout_cols > div > nav').attr('class', 'w3-card-2 w3-margin-top w3-block w3-blue w3-bar');
+                $('#layout_cols > div > nav > div').attr('class', 'w3-container w3-bar-item w3-hover-blue-grey w3-button')
+            };
+
+            // Navigation Functions
+            function display_card(btn, cardname) {
+                hide_cards();
+                format_nav();
+                btn.attr('class', btn.attr('class') + " w3-blue-grey");
+                $('#' + cardname).show();
+            };
+
+            // Initialise Page
+            format_nav();
+            hide_cards();
+            document_formats();
+            display_card($('nav > div:first-child'), $('nav + div').attr('id')); // displays first card
+        
+        </script>
+
+    </body>
+
+</html>
