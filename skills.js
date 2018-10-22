@@ -3,10 +3,6 @@ var skills = [
     {
         name: "Skill Name"
         , level: "Skill Level"
-    },
-    {
-        name: "Skill 2"
-        , level: "Level 2"
     }
 ];
 
@@ -22,7 +18,6 @@ var skills = [
         name: "Excel"
         , level: "95"
     }
-
     , {
         name: "QlikView"
         , level: "75"

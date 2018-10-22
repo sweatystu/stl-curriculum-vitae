@@ -21,7 +21,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
         
         <!-- Load custom JavaScript Objects -->
+        <script src="./qualifications.js"></script>
         <script src="./skills.js"></script>
+        <script src="./courses.js"></script>
 
     </head>
 
@@ -42,12 +44,13 @@
                         <p>I am a skilled reporting engineer with a scientific background.</p>
                         <p>I aim to be an expert in providing the most relevant and consumable management information possible.</p>
                     </div>
-                    <div><!-- Qualifications -->
+                    <div id="qualifications"><!-- Qualifications -->
                         <h3>Qualifications</h3>
-                        <ul>
+                        <ul></ul>
+                        <!-- <ul>
                            <li>MChem<br /><span>Chemistry with External Placement<br />2007 St Andrews</span></li>
                            <li>PgDip<br/><span>Business Analytics<br />2018 <abbr title="Manchester Metropolitan University">MMU</abbr></span></li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div id="skills">
                         <h3>Skills</h3>
@@ -110,19 +113,21 @@
                     <div>
                         <p>Test</p>
                     </div>
-                    <div>
+                    <div id="courses">
                         <h2>Courses</h2>
-                    </div>
-                    <div>
-                        <p>Test</p>
+                        <table>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Provider</th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
                 <div id="downloads">
                     <div>
                         <h2>Downloads</h2>
-                    </div>
-                    <div>
                         <p>Test</p>
                     </div>
                 </div>
@@ -165,8 +170,9 @@
                 $('ul').each(function(){
                     $(this).attr('class', $(this).attr('class') + ' w3-ul');
                 });
-                $('ul span').each(function(){
-                    $(this).attr('class', $(this).attr('class') + ' w3-small w3-text-grey');
+                // Tables
+                $('table').each(function(){
+                    $(this).attr('class', $(this).attr('class') + ' w3-table w3-bordered');
                 });
             };
 
@@ -190,8 +196,83 @@
                 $('#' + cardname).show();
             };
 
+            // Format Dates
+            function dateString_yearString(dt){
+                // converts a string yyyy-mm-dd to the year yyyy
+                var d = new Date(dt);
+                return d.getFullYear().toString();
+            };
+            function dateString_monthString(dt){
+                // converts a string yyyy-mm-dd to the month mmm-yyyy
+                var d = new Date(dt);
+                var txt;
+                txt = monthNum_monthName(d.getMonth());
+                txt = txt + ' ' + d.getFullYear().toString();
+                return txt;
+            };
+            function monthNum_monthName(num){
+                var mnth;
+                switch(num){
+                    case 0:
+                        mnth = "Jan";
+                        break;
+                    case 1:
+                        mnth = "Feb";
+                        break;
+                    case 2:
+                        mnth = "Mar";
+                        break;
+                    case 3:
+                        mnth = "Apr";
+                        break;
+                    case 4:
+                        mnth = "May";
+                        break;
+                    case 5:
+                        mnth = "Jun";
+                        break;
+                    case 6:
+                        mnth = "Jul";
+                        break;
+                    case 7:
+                        mnth = "Aug";
+                        break;
+                    case 8:
+                        mnth = "Sep";
+                        break;
+                    case 9:
+                        mnth = "Oct";
+                        break;
+                    case 10:
+                        mnth = "Nov";
+                        break;
+                    case 11:
+                        mnth = "Dec";
+                        break;
+                    default:
+                        mnth = null;
+                }
+                return mnth;
+            };
+
             // Display external file data
             function display_data() {
+                // Qualifications
+                $.each(quals, function(){
+                    var txt;
+                    txt = '<li>';
+                    txt = txt + this.award;
+                    txt = txt + '<br /><span>';
+                    txt = txt + this.title;
+                    txt = txt + '<br />';
+                    txt = txt + dateString_yearString(this.date);
+                    txt = txt + ' ' + this.body;
+                    txt = txt + '</span></li>';
+                    $('#qualifications > ul').html($('#qualifications > ul').html() + txt);
+                });
+                $('#qualifications > ul span').each(function(){
+                    $(this).attr('class', 'w3-small');
+                });
                 // Skills
                 $.each(skills, function(){
                     var lvl;
@@ -212,6 +293,16 @@
                 });
                 $('#skills > div > div').each(function() {
                     $(this).attr('class', 'w3-container w3-blue w3-round-xlarge');
+                });
+                // Courses
+                $.each(courses, function(){
+                    var txt;
+                    txt = '<tr>';
+                    txt = txt + '<td>' + dateString_monthString(this.date) + '</td>';
+                    txt = txt + '<td>' + this.name + '</td>';
+                    txt = txt + '<td>' + this.provider + '</td>';
+                    txt = txt + '</tr>';
+                    $('#courses > table').html($('#courses > table').html() + txt);
                 });
             };
 
