@@ -168,13 +168,6 @@
                 $('ul span').each(function(){
                     $(this).attr('class', $(this).attr('class') + ' w3-small w3-text-grey');
                 });
-                // Skill Bars
-                $('#skills > div').each(function() {
-                    $(this).attr('class', 'w3-pale-blue w3-border w3-border-blue w3-round-xlarge w3-margin-bottom');
-                });
-                $('#skills > div > div').each(function() {
-                    $(this).attr('class', 'w3-container w3-blue w3-round-xlarge');
-                });
             };
 
             function hide_cards() {
@@ -201,7 +194,24 @@
             function display_data() {
                 // Skills
                 $.each(skills, function(){
-                    $('#skills').html($('#skills').html() + '<div><div style="width: ' + this.level + '%">' + this.name + '</div></div>');
+                    var lvl;
+                    if(this.level == null){
+                        lvl = 50;
+                    } else {
+                        lvl = parseInt(this.level);
+                        if(lvl < 50){
+                            lvl = 50;
+                        } else if(lvl > 100){
+                            lvl = 100
+                        };
+                    };
+                    $('#skills').html($('#skills').html() + '<div><div style="width: ' + lvl + '%">' + this.name + '</div></div>');
+                });
+                $('#skills > div').each(function() {
+                    $(this).attr('class', 'w3-pale-blue w3-border w3-border-blue w3-round-xlarge w3-margin-bottom');
+                });
+                $('#skills > div > div').each(function() {
+                    $(this).attr('class', 'w3-container w3-blue w3-round-xlarge');
                 });
             };
 
