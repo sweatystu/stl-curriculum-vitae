@@ -18,7 +18,11 @@
 		
 		<!-- Plugins -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!-- JQuery Library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
+        
+        <!-- Load custom JavaScript Objects -->
+        <script src="./skills.js"></script>
+
     </head>
 
     <body class="w3-light-grey">
@@ -44,6 +48,9 @@
                            <li>MChem<br /><span>Chemistry with External Placement<br />2007 St Andrews</span></li>
                            <li>PgDip<br/><span>Business Analytics<br />2018 <abbr title="Manchester Metropolitan University">MMU</abbr></span></li>
                         </ul>
+                    </div>
+                    <div id="skills">
+                        <h3>Skills</h3>
                     </div>
                     <div><!-- Contact Details -->
                         <h3>Contact</h3>
@@ -183,9 +190,35 @@
                 $('#' + cardname).show();
             };
 
+            // Display external file data
+            function display_data() {
+                // Skills
+                $.each(skills, function(){
+                    var lvl;
+                    if(this.level == null){
+                        lvl = 50;
+                    } else {
+                        lvl = parseInt(this.level);
+                        if(lvl < 50){
+                            lvl = 50;
+                        } else if(lvl > 100){
+                            lvl = 100
+                        };
+                    };
+                    $('#skills').html($('#skills').html() + '<div><div style="width: ' + lvl + '%">' + this.name + '</div></div>');
+                });
+                $('#skills > div').each(function() {
+                    $(this).attr('class', 'w3-pale-blue w3-border w3-border-blue w3-round-xlarge w3-margin-bottom');
+                });
+                $('#skills > div > div').each(function() {
+                    $(this).attr('class', 'w3-container w3-blue w3-round-xlarge');
+                });
+            };
+
             // Initialise Page
             format_nav();
             hide_cards();
+            display_data();
             document_formats();
             display_card($('nav > div:first-child'), $('nav + div').attr('id')); // displays first card
         
