@@ -24,6 +24,7 @@
         <script src="./qualifications.js"></script>
         <script src="./skills.js"></script>
         <script src="./courses.js"></script>
+        <script src="./references.js"></script>
 
     </head>
 
@@ -107,11 +108,11 @@
                 </div>
 
                 <div id="other">
-                    <div>
+                    <div id="references">
                         <h2>References</h2>
-                    </div>
-                    <div>
-                        <p>Test</p>
+                        <ul>
+
+                        </ul>
                     </div>
                     <div id="courses">
                         <h2>Courses</h2>
@@ -210,6 +211,13 @@
                 txt = txt + ' ' + d.getFullYear().toString();
                 return txt;
             };
+            function dateString_daymonthString(dt){
+                var d = new Date(dt);
+                var txt;
+                txt = d.getDate().toString();
+                txt = txt + ' ' + monthNum_monthName(d.getMonth());
+                return txt;
+            };
             function monthNum_monthName(num){
                 var mnth;
                 switch(num){
@@ -303,6 +311,61 @@
                     txt = txt + '<td>' + this.provider + '</td>';
                     txt = txt + '</tr>';
                     $('#courses > table').html($('#courses > table').html() + txt);
+                });
+                // References
+                $.each(refs, function(){
+                    var txt;
+                    var no_authors = this.authors.length - 1;
+                    txt = '<li>';
+                    switch(true){
+                        case this.journal != null:
+                            var j = this.journal;
+                            $.each(this.authors, function(index){
+                                switch(true){
+                                    case index == no_authors:
+                                        txt = txt + this;
+                                        break;
+                                    case index == no_authors - 1:
+                                        txt = txt + this + ' and ';
+                                        break;
+                                    default:
+                                        txt = txt + this + ', ';
+                                };
+                            });
+                            txt = txt + ' (' + dateString_yearString(this.date) + ')';
+                            txt = txt + " '" + this.title + ".'";
+                            txt = txt + ' <i>' + j.journal + '</i>';
+                            txt = txt + ', Vol. ' + j.volume.toString();
+                            if(j.issue != null){txt = txt + '(' + j.issue.toString() + ')';};
+                            txt = txt + ', pp. ' + j.page;
+                            txt = txt + '.';
+                            break;
+                        case this.conference != null:
+                            var c = this.conference;
+                            $.each(this.authors, function(index){
+                                switch(true){
+                                    case index == no_authors:
+                                        txt = txt + this;
+                                        break;
+                                    case index == no_authors - 1:
+                                        txt = txt + this + ' and ';
+                                        break;
+                                    default:
+                                        txt = txt + this + ', ';
+                                };
+                            });
+                            txt = txt + ' (' + dateString_yearString(this.date) + ')';
+                            txt = txt + " '" + this.title + ".'";
+                            txt = txt + ' Paper presented at: <i>' + c.conference + '</i>.';
+                            txt = txt + ' ' + c.location + ',';
+                            txt = txt + ' ' + dateString_daymonthString(this.date);
+                            txt = txt + '.';
+                            break;
+                        default:
+                            txt = txt + 'Not Recognised';
+                    };
+                    txt = txt + '</li>';
+                    $('#references > ul').html($('#references > ul').html() + txt);
                 });
             };
 
