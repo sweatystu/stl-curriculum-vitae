@@ -23,8 +23,11 @@
         <!-- Load custom JavaScript Objects -->
         <script src="./qualifications.js"></script>
         <script src="./skills.js"></script>
-        <script src="./courses.js"></script>
+        <script src="./achievements.js"></script>
+        <script src="./employment.js"></script>
+        <script src="./education.js"></script>
         <script src="./references.js"></script>
+        <script src="./courses.js"></script>
 
     </head>
 
@@ -38,28 +41,28 @@
                 <!-- Left Column -->
                 
                 <div>
+                    <!-- Introduction -->
                     <div class="w3-blue w3-wide"><!-- Title -->
                         <h1>Stuart<br />Lambert</h1>
                     </div>
                     <div class="w3-small"><!-- Introduction -->
-                        <p>I am a skilled reporting engineer with a scientific background.</p>
-                        <p>I aim to be an expert in providing the most relevant and consumable management information possible.</p>
+                        <p>I am a <i>data visualisation</i> expert with a background in chemistry.</p>
                     </div>
+                    <!-- Qualifications -->
                     <div id="qualifications"><!-- Qualifications -->
                         <h3>Qualifications</h3>
-                        <ul></ul>
-                        <!-- <ul>
-                           <li>MChem<br /><span>Chemistry with External Placement<br />2007 St Andrews</span></li>
-                           <li>PgDip<br/><span>Business Analytics<br />2018 <abbr title="Manchester Metropolitan University">MMU</abbr></span></li>
-                        </ul> -->
+                        <ul>
+
+                        </ul>
                     </div>
+                    <!-- Skills -->
                     <div id="skills">
                         <h3>Skills</h3>
                     </div>
-                    <div><!-- Contact Details -->
+                    <!-- Contact Details -->
+                    <div>
                         <h3>Contact</h3>
                         <p><i class="material-icons">email</i> <a href="mailto:stuart.t.lambert@gmail.com">stuart.t.lambert@gmail.com</a></p>
-                        <p><i class="material-icons">phone</i> +44 (0)7 853 252 108</p>
                         <p><i class="material-icons">home</i> Cheshire, UK</p>
                     </div>
                 </div>
@@ -80,33 +83,47 @@
                     <div onclick="display_card($(this), 'downloads');">Downloads</div>
                 </nav><!-- End of Navigation -->
 
+                <!-- Key Achivements Page -->
                 <div id="key_achievements">
                     <div>
                         <h2>Key Achievements</h2>
-                    </div>
-                    <div>
-                        <p>Test</p>
+                        <ul>
+                            <li>This is what I've done.</li>
+                            <li>And this.</li>
+                            <li>Also this.</li>
+                        </ul>
+                        <ul>
+                            <li><dl>
+                                <dt><b>What:</b><span class="w3-tag w3-round w3-right w3-blue">Here</span></dt>
+                                <dd>This</dd>
+                                <dt><b>How:</b></dt>
+                                <dd>Being awesome</dd>
+                            </dl></li>
+                            <li><dl>
+                                <dt><b>What:</b><span class="w3-tag w3-round w3-right w3-blue">There</span></dt>
+                                <dd>This</dd>
+                                <dt><b>How:</b></dt>
+                                <dd>Being awesome</dd>
+                            </dl></li>
+                        </ul>
                     </div>
                 </div>
 
+                <!-- Employment Page -->
                 <div id="employment">
                     <div>
                         <h2>Employment</h2>
                     </div>
-                    <div>
-                        <p>Test</p>
-                    </div>
                 </div>
 
+                <!-- Education Page -->
                 <div id="education">
                     <div>
                         <h2>Education</h2>
                     </div>
-                    <div>
-                        <p>Test</p>
-                    </div>
                 </div>
 
+                <!-- Other Page -->
                 <div id="other">
                     <div id="references">
                         <h2>References</h2>
@@ -126,10 +143,10 @@
                     </div>
                 </div>
 
+                <!-- Downloads Page -->
                 <div id="downloads">
                     <div>
                         <h2>Downloads</h2>
-                        <p>Test</p>
                     </div>
                 </div>
 
@@ -297,10 +314,15 @@
                     $('#skills').html($('#skills').html() + '<div><div style="width: ' + lvl + '%">' + this.name + '</div></div>');
                 });
                 $('#skills > div').each(function() {
-                    $(this).attr('class', 'w3-pale-blue w3-border w3-border-blue w3-round-xlarge w3-margin-bottom');
+                    $(this).attr('class', 'w3-light-grey w3-round-xlarge w3-margin-bottom');
                 });
                 $('#skills > div > div').each(function() {
-                    $(this).attr('class', 'w3-container w3-blue w3-round-xlarge');
+                    $(this).attr('class', 'w3-container w3-blue-grey w3-round-xlarge');
+                });
+                // Key Achievements
+                $.each(achievements, function(){
+                    var txt;
+                    txt = "";
                 });
                 // Courses
                 $.each(courses, function(){
