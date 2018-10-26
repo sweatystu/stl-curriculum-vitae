@@ -88,23 +88,7 @@
                     <div>
                         <h2>Key Achievements</h2>
                         <ul>
-                            <li>This is what I've done.</li>
-                            <li>And this.</li>
-                            <li>Also this.</li>
-                        </ul>
-                        <ul>
-                            <li><dl>
-                                <dt><b>What:</b><span class="w3-tag w3-round w3-right w3-blue">Here</span></dt>
-                                <dd>This</dd>
-                                <dt><b>How:</b></dt>
-                                <dd>Being awesome</dd>
-                            </dl></li>
-                            <li><dl>
-                                <dt><b>What:</b><span class="w3-tag w3-round w3-right w3-blue">There</span></dt>
-                                <dd>This</dd>
-                                <dt><b>How:</b></dt>
-                                <dd>Being awesome</dd>
-                            </dl></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -113,6 +97,9 @@
                 <div id="employment">
                     <div>
                         <h2>Employment</h2>
+                        <ul>
+
+                        </ul>
                     </div>
                 </div>
 
@@ -120,6 +107,9 @@
                 <div id="education">
                     <div>
                         <h2>Education</h2>
+                        <ul>
+
+                        </ul>
                     </div>
                 </div>
 
@@ -194,10 +184,15 @@
                 });
             };
 
+            // Show or Hide elements
             function hide_cards() {
                 $('#right_col > div').each(function(){
                     $(this).hide();
                 });
+            };
+
+            function toggle_modules(btn){
+                btn.next('ul').toggle();
             };
 
             // Navigation Functions
@@ -280,9 +275,8 @@
                 return mnth;
             };
 
-            // Display external file data
-            function display_data() {
-                // Qualifications
+            // Process external file data
+            function display_qualifications(){
                 $.each(quals, function(){
                     var txt;
                     txt = '<li>';
@@ -298,7 +292,9 @@
                 $('#qualifications > ul span').each(function(){
                     $(this).attr('class', 'w3-small');
                 });
-                // Skills
+            };
+
+            function display_skills(){
                 $.each(skills, function(){
                     var lvl;
                     if(this.level == null){
@@ -319,12 +315,77 @@
                 $('#skills > div > div').each(function() {
                     $(this).attr('class', 'w3-container w3-blue-grey w3-round-xlarge');
                 });
-                // Key Achievements
+            };
+
+            function display_achievements(){
                 $.each(achievements, function(){
                     var txt;
-                    txt = "";
+                    txt = '<li><dl>';
+                    txt = txt + '<dt><b>What:</b>';
+                    if(this.company != null){
+                        txt = txt + '<span>' + this.company + '</span>';
+                    };
+                    txt = txt + '</dt>';
+                    txt = txt + '<dd>' + this.what + '.</dd>';
+                    if(this.how != null){
+                        txt = txt + '<dt><b>How:</b></dt>';
+                        txt = txt + '<dd>' + this.how + '.</dd>';
+                    };
+                    if(this.result != null){
+                        txt = txt + '<dt><b>Resulting in:</b></dt>';
+                        txt = txt + '<dd>' + this.result + '.</dd>';
+                    };
+                    if(this.comparison != null){
+                        txt = txt + '<dt><b>Compared to:</b></dt>';
+                        txt = txt + '<dd>' + this.comparison + '.</dd>';
+                    };
+                    txt = txt + '</dl></li>';
+                    $('#key_achievements ul').html($('#key_achievements ul').html() + txt);
                 });
-                // Courses
+                $('#key_achievements ul dt span').attr('class', 'w3-right w3-tag w3-blue-grey w3-wide w3-round');
+            };
+
+            function display_education(){
+                $.each(education, function(){
+                    var txt;
+                    txt = '<li>';
+                    txt = txt + '<h4>' + this.course + '</h4>';
+                    txt = txt + this.school + '<br />';
+                    if(this.qualification != null){
+                        txt = txt + this.qualification;
+                        if(this.result != null){
+                            txt = txt + ' (' + this.result + ')'
+                        };
+                        txt = txt + '<br />';
+                    };
+                    txt = txt + dateString_monthString(this.date);
+                    if(this.modules != null){
+                        txt = txt + '<br />';
+                        txt = txt + '<button onclick="toggle_modules($(this));">Modules</button>';
+                        txt = txt + '<ul>';
+                        $.each(this.modules, function(){
+                            txt = txt + '<li>';
+                            txt = txt + this.module;
+                            if(this.code != null){
+                                txt = txt + ' (' + this.code + ')';
+                            };
+                            if(this.result != null){
+                                txt = txt + '<span>' + this.result + '</span>';
+                            }
+                            txt = txt + '</li>';
+                        });
+                        txt = txt + '</ul>';
+                    };
+                    txt = txt + '</li>';
+                    $('#education > div > ul').html($('#education > div > ul').html() + txt);
+                });
+                $('#education button').attr('class', 'w3-button w3-blue w3-hover-blue-grey w3-margin-top w3-round');
+                $('#education button + ul').attr('class', $('#education button + ul').attr('class') + ' w3-panel w3-light-grey w3-border-light-blue w3-leftbar w3-border-right');
+                $('#education button + ul span').attr('class', 'w3-right');
+                $('#education button + ul').hide();
+            };
+
+            function display_courses(){
                 $.each(courses, function(){
                     var txt;
                     txt = '<tr>';
@@ -334,7 +395,9 @@
                     txt = txt + '</tr>';
                     $('#courses > table').html($('#courses > table').html() + txt);
                 });
-                // References
+            };
+
+            function display_references(){
                 $.each(refs, function(){
                     var txt;
                     var no_authors = this.authors.length - 1;
@@ -389,6 +452,16 @@
                     txt = txt + '</li>';
                     $('#references > ul').html($('#references > ul').html() + txt);
                 });
+            };
+
+            // Display external file data
+            function display_data() {
+                display_qualifications();
+                display_skills();
+                display_achievements();
+                display_education();
+                display_courses();
+                display_references();
             };
 
             // Initialise Page
