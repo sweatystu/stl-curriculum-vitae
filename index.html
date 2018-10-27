@@ -46,7 +46,7 @@
                         <h1>Stuart<br />Lambert</h1>
                     </div>
                     <div class="w3-small"><!-- Introduction -->
-                        <p>I am a <i>data visualisation</i> expert with a background in chemistry.</p>
+                        <p>I am a <i>data visualisation</i> expert with a background in <i>chemistry</i> and an interest in <i>coding</i>.</p>
                     </div>
                     <!-- Qualifications -->
                     <div id="qualifications"><!-- Qualifications -->
@@ -339,10 +339,60 @@
                         txt = txt + '<dt><b>Compared to:</b></dt>';
                         txt = txt + '<dd>' + this.comparison + '.</dd>';
                     };
+                    if(this.skills != null){
+                        txt = txt + '<dt><b>Skills Used:</b></dt>';
+                        txt = txt + '<dd>';
+                        for(i in this.skills){
+                            txt = txt + '<span>' + this.skills[i] + '</span>';
+                        }
+                        txt = txt + '</dd>';
+                    };
                     txt = txt + '</dl></li>';
                     $('#key_achievements ul').html($('#key_achievements ul').html() + txt);
                 });
-                $('#key_achievements ul dt span').attr('class', 'w3-right w3-tag w3-blue-grey w3-wide w3-round');
+                $('#key_achievements ul dt span').attr('class', 'w3-right w3-tag w3-blue w3-wide w3-round');
+                $('#key_achievements ul dd span').attr('class', 'w3-tag w3-blue-grey w3-round w3-margin-right');
+            };
+
+            function display_employment(){
+                $.each(employment, function(){
+                    var txt;
+                    txt = '<li>';
+                    txt = txt + '<h4>' + this.company + '</h4>'
+                    txt = txt + '<b>' + this.title + '</b><br />';
+                    txt = txt + '<i>' + dateString_monthString(this.start) + ' - ';
+                    if(this.end != null){
+                        txt = txt + dateString_monthString(this.end);
+                    } else {
+                        txt = txt + 'Present';
+                    };
+                    txt = txt + '</i>';
+                    if(this.responsibilities != null | this.achievements != null | this.skills != null){
+                        txt = txt + '<dl>';
+                        if(this.responsibilities != null){
+                            txt = txt + '<dt><b>Responsibilities:</b></dt>';
+                            for(i in this.responsibilities){
+                                txt = txt + '<dd>' + this.responsibilities[i] + '</dd>';
+                            };
+                        };
+                        if(this.achievements != null){
+                            txt = txt + '<dt><b>Achievements:</b></dt>';
+                            for(i in this.achievements){
+                                txt = txt + '<dd>' + this.achievements[i] + '</dd>';
+                            };
+                        };
+                        if(this.skills != null){
+                            txt = txt + '<dt><b>Skills Used:</b></dt><dd>';
+                            for(i in this.skills){
+                                txt = txt + '<span>' + this.skills[i] + '</span>';
+                            };
+                        };
+                        txt = txt + '</dd></dl>';
+                    };
+                    txt = txt + '</li>';
+                    $('#employment ul').html($('#employment ul').html() + txt);
+                    $('#employment ul dd span').attr('class', 'w3-tag w3-blue-grey w3-round w3-margin-right');
+                });
             };
 
             function display_education(){
@@ -459,6 +509,7 @@
                 display_qualifications();
                 display_skills();
                 display_achievements();
+                display_employment();
                 display_education();
                 display_courses();
                 display_references();

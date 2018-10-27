@@ -6,6 +6,10 @@ var achievements = [
         , how: "What did I do to achieve it?"
         , result: "what was the outcome?"
         , comparison: "How does this outcome compare?"
+        , skills: [
+            "skill used"
+            , "skill used"
+        ]
     }
 ];
 
@@ -20,6 +24,10 @@ var achievements = [
         , how: "Documented requirements and entities, designed structure, and built an ETL in SQL"
         , result: "Fast, simple and efficient reporting database that could be easily used for reporting across platforms"
         , comparison: "Copy of live database, optimised for input/output, with complex joins required"
+        , skills: [
+            "SQL"
+            , "Tableau"
+        ]
     }
     , {
         company: "Infineum"
@@ -27,6 +35,10 @@ var achievements = [
         , how: "Learning and implementing VBA"
         , result: "Improved anaysis time of ~ 5 seconds"
         , comparison: "Previous analysis time of ~ 10 minutes"
+        , skills: [
+            "Excel"
+            , "VBA"
+        ]
     }
 ];
 
