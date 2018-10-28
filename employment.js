@@ -4,6 +4,7 @@ var employment = [
         company: "Company Name"
         , start: "yyyy-mm-dd"
         , end: "yyyy-mm-dd"
+        , link: "https://web-address.com"
         , responsibilities: [
             "Responsibility 1"
             , "Responsibility 2"
@@ -29,6 +30,7 @@ var employment = [
         company: "PayBreak"
         , title: "MI &amp; Reporting Engineer"
         , start: "2018-05-08"
+        , link: "https://www.afforditnow.com/"
         , responsibilities: [
             "Data provision"
             , "Maintaining Tableau environment"

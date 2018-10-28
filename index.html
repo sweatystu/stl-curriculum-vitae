@@ -28,6 +28,7 @@
         <script src="./education.js"></script>
         <script src="./references.js"></script>
         <script src="./courses.js"></script>
+        <script src="./downloads.js"></script>
 
     </head>
 
@@ -137,6 +138,9 @@
                 <div id="downloads">
                     <div>
                         <h2>Downloads</h2>
+                        <ul>
+
+                        </ul>
                     </div>
                 </div>
 
@@ -367,6 +371,9 @@
                         txt = txt + 'Present';
                     };
                     txt = txt + '</i>';
+                    if(this.link != null){
+                        txt = txt + '<br /><a href="' + this.link + '">' + this.link + '</a>';
+                    };
                     if(this.responsibilities != null | this.achievements != null | this.skills != null){
                         txt = txt + '<dl>';
                         if(this.responsibilities != null){
@@ -504,6 +511,18 @@
                 });
             };
 
+            function display_downloads() {
+                $.each(downloads, function(){
+                    var txt;
+                    txt = '<li>';
+                    txt = txt + '<h4>' + this.title + '</h4>';
+                    txt = txt + this.description + '<br />';
+                    txt = txt + '<a href="./downloads/">' + this.filename + '</a>';
+                    txt = txt + '</li>';
+                    $('#downloads ul').html($('#downloads ul').html() + txt)
+                });
+            };
+
             // Display external file data
             function display_data() {
                 display_qualifications();
@@ -513,6 +532,7 @@
                 display_education();
                 display_courses();
                 display_references();
+                display_downloads();
             };
 
             // Initialise Page
