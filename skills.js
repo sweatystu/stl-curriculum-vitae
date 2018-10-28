@@ -3,10 +3,6 @@ var skills = [
     {
         name: "Skill Name"
         , level: "Skill Level"
-    },
-    {
-        name: "Skill 2"
-        , level: "Level 2"
     }
 ];
 
@@ -20,14 +16,28 @@ Skills are shown in the order defined in this object.
 var skills = [
     {
         name: "Excel"
-        , level: "95"
+        , level: 90
     }
-
     , {
-        name: "QlikView"
-        , level: "75"
+        name: "VBA"
+        , level: 85
     }
     , {
         name: "Tableau"
+        , level: 80
+    }
+    , {
+        name: "QlikView"
+        , level: 75
+    }
+    , {
+        name: "Power BI"
+        , level: 65
+    }
+    , {
+        name: "R"
+    }
+    , {
+        name: "SQL"
     }
 ];
