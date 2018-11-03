@@ -15,20 +15,311 @@
         <!-- Style Sheets -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 		
 		<!-- Plugins -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!-- JQuery Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
         
         <!-- Load custom JavaScript Objects -->
+        <script src="./format-scripts.js"></script>
+        <script src="./navigation-scripts.js"></script>
+        <script src="./date-scripts.js"></script>
+        <script src="./calendar-scripts.js"></script>
+        <script src="./daily-scripts.js"></script>
 
     </head>
 
     <body>
 
+        <!-- Headers -->
+        <header>
+            <h1>Things To Get Done</h1>
+            <h4 id="date_header"></h4>
+        </header>
 
+        <!-- Navigation -->
+        <nav>
+            <div onclick="display_page($(this), 'pg_today');">Today</div>
+            <div onclick="display_page($(this), 'pg_calendar');">Calendar</div>
+            <div onclick="display_page($(this), 'pg_add_adhoc');">Add Ad-Hoc</div>
+            <div onclick="display_page($(this), 'pg_add_daily');">Add Daily</div>
+            <div onclick="display_page($(this), 'pg_add_weekly');">Add Weekly</div>
+            <div onclick="display_page($(this), 'pg_add_monthly');">Add Monthly</div>
+        </nav>
+
+        <!-- Page Today -->
+        <div id="pg_today">
+            <h2>Daily Tasks</h2>
+            <ul id="today_daily">
+
+            </ul>
+            <h2>Weekly Tasks</h2>
+            <ul id="today_weekly">
+                
+            </ul>
+            <h2>Monthly Tasks</h2>
+            <ul id="today_monthly">
+
+            </ul>
+            <h2>Ad-Hoc Tasks</h2>
+            <ul id="today_adhoc">
+
+            </ul>
+        </div>
+
+        <!-- Page Calendar -->
+        <div id="pg_calendar">
+            <h2>Weekly</h2>
+            <table id="tbl_weekly">
+                <tr>
+                    <th rel="weekend">Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th rel="weekend">Sat</th>
+                </tr>
+                <tr>
+                    <td rel="0 weekend"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6 weekend"></td>
+                </tr>
+            </table>
+
+            <h2>Calendar</h2>
+            <table id="tbl_calendar">
+                <tr>
+                    <th rel="weekend">Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th rel="weekend">Sat</th>
+                </tr>
+                <tr rel="0">
+                    <td rel="0"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6"></td>
+                </tr>
+                <tr rel="1">
+                    <td rel="0"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6"></td>
+                </tr>
+                <tr rel="2">
+                    <td rel="0"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6"></td>
+                </tr>
+                <tr rel="3">
+                    <td rel="0"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6"></td>
+                </tr>
+                <tr rel="4">
+                    <td rel="0"></td>
+                    <td rel="1"></td>
+                    <td rel="2"></td>
+                    <td rel="3"></td>
+                    <td rel="4"></td>
+                    <td rel="5"></td>
+                    <td rel="6"></td>
+                </tr>
+                <tr>
+                    <th rel="weekend">Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th rel="weekend">Sat</th>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Page Add Ad-Hoc -->
+        <div id="pg_add_adhoc">
+            <h2>Add an Ad-Hoc Task</h2>
+            <form id="form_adhoc">
+
+                <input id="input_adhoc_name" type="text" />
+                <label>Report Name</label>
+
+                <input id="input_adhoc_date" type="date" />
+                <label>Date Due</label>
+
+                <input id="input_adhoc_recipients" type="text" />
+                <label>Recipients</label>
+
+                <input id="input_adhoc_description" type=text />
+                <label>Description</label>
+
+                <br />
+                <button id="input_adhoc_submit">Add Daily Task</button>
+
+            </form>
+        </div>
+
+        <!-- Page Add Daily -->
+        <div id="pg_add_daily">
+            <h2>Add Daily Task</h2>
+            <form id="form_daily">
+
+                <input id="input_daily_name" type="text" />
+                <label>Report Name</label>
+
+                <input id="input_daily_recipients" type="text" />
+                <label>Recipients</label>
+
+                <input id="input_daily_repository" type="text" />
+                <label>Repository</label>
+
+                <input id="input_daily_file" type="text" />
+                <label>Location</label>
+
+                <input id="input_daily_description" type=text />
+                <label>Description</label>
+
+                <br />
+                <button id="input_daily_submit">Add Daily Task</button>
+
+            </form>
+        </div>
+
+        <!-- Page Add Weekly -->
+        <div id="pg_add_weekly">
+            <h2>Add Weekly Task</h2>
+            <form id="form_weekly">
+
+                    <input id="input_weekly_name" type="text" />
+                    <label>Report Name</label>
+
+                    <select name="input_weekly_day">
+                        <option value="" disabled selected>Select day for the task to be completed</option>
+                        <option value=0>Monday</option>
+                        <option value=1>Tuesday</option>
+                        <option value=2>Wednesday</option>
+                        <option value=3>Thursday</option>
+                        <option value=4>Friday</option>
+                        <option value=5>Saturday</option>
+                        <option value=6>Sunday</option>
+                    </select>
+                    <label>Report Day</label>
+    
+                    <input id="input_weekly_recipients" type="text" />
+                    <label>Recipients</label>
+    
+                    <input id="input_weekly_repository" type="text" />
+                    <label>Repository</label>
+    
+                    <input id="input_weekly_file" type="text" />
+                    <label>Location</label>
+    
+                    <input id="input_weekly_description" type=text />
+                    <label>Description</label>
+    
+                    <br />
+                    <button id="input_weekly_submit">Add Daily Task</button>
+    
+                </form>
+        </div>
+
+        <!-- Page Add Monthly -->
+        <div id="pg_add_monthly">
+            <h2>Add Monthly Task</h2>
+            <form id="form_monthly">
+
+                <input id="input_monthly_name" type="text" />
+                <label>Report Name</label>
+
+                <input id="input_monthly_day" type="number" min="1" max="31" />
+                <label>Day of the month to complete</label>
+
+                <input id="input_monthly_recipients" type="text" />
+                <label>Recipients</label>
+
+                <input id="input_monthly_repository" type="text" />
+                <label>Repository</label>
+
+                <input id="input_monthly_file" type="text" />
+                <label>Location</label>
+
+                <input id="input_monthly_description" type=text />
+                <label>Description</label>
+
+                <br />
+                <button id="input_monthly_submit">Add Daily Task</button>
+
+            </form>
+        </div>
+
+        <!-- Scripts to apply formatting and interactivity -->
         <script>
-            
+
+            // Define Submit Button Behaviours
+            $('#form_daily').submit(function(e){
+
+                e.preventDefault();
+            });
+            $('#form_weekly').submit(function(e){
+
+                e.preventDefault();
+            });
+            $('#form_monthly').submit(function(e){
+
+                e.preventDefault();
+            });
+            $('#form_adhoc').submit(function(e){
+                
+                e.preventDefault();
+            });
+            $('input[type="number"]').focusout(function(){
+                var cur = $(this).val();
+                var min = parseInt($(this).attr('min'));
+                var max = parseInt($(this).attr('max'));
+                if(cur < min){
+                    $(this).val(min);
+                } else if (cur > max){
+                    $(this).val(max);
+                };
+            });
+
+            // Add date to header
+            $('#date_header').html(dateString_dmyString(new Date()));
+
+            // Add dates to calendar
+            display_calendar_dates();
+            identify_days();
+
+            // Apply formating
+            generic_format();
+            display_page($('nav > div:first-child'), $('nav + div').attr('id'));
+
         </script>
 
     </body>
