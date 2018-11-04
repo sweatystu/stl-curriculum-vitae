@@ -16,7 +16,11 @@ function dateString_dmString(dt){
 
 function date_addDays(dt, days){
     var d = new Date();
+    d.setHours(3);
+    d.setMinutes(0);
+    d.setSeconds(0);
     d.setTime(dt.getTime() + (days * 24 * 60 * 60 * 1000));
+    d.setHours(3);
     return d;
 };
 
@@ -65,4 +69,14 @@ function monthNum_monthName(mnth, lng=false){
         rtn = rtn.substring(0, 3);
     };
     return rtn;
+};
+
+function return_colNum(dt){
+    return dt.getDay();
+};
+
+function return_rowNum(dt){
+    var d = new Date();
+    d.setHours(3);
+    dt.setHours(3);
 };

@@ -14,7 +14,7 @@
 
         <!-- Style Sheets -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
@@ -23,10 +23,11 @@
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!-- JQuery Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> <!-- JQuery UI Library -->
         
-        <!-- Load custom JavaScript Objects -->
+        <!-- Load custom JavaScript Objects and Functions -->
         <script src="./format-scripts.js"></script>
         <script src="./navigation-scripts.js"></script>
         <script src="./date-scripts.js"></script>
+        <script src="./form-scripts.js"></script>
         <script src="./calendar-scripts.js"></script>
         <script src="./daily-scripts.js"></script>
 
@@ -41,14 +42,7 @@
         </header>
 
         <!-- Navigation -->
-        <nav>
-            <div onclick="display_page($(this), 'pg_today');">Today</div>
-            <div onclick="display_page($(this), 'pg_calendar');">Calendar</div>
-            <div onclick="display_page($(this), 'pg_add_adhoc');">Add Ad-Hoc</div>
-            <div onclick="display_page($(this), 'pg_add_daily');">Add Daily</div>
-            <div onclick="display_page($(this), 'pg_add_weekly');">Add Weekly</div>
-            <div onclick="display_page($(this), 'pg_add_monthly');">Add Monthly</div>
-        </nav>
+        <nav></nav>
 
         <!-- Page Today -->
         <div id="pg_today">
@@ -72,94 +66,12 @@
 
         <!-- Page Calendar -->
         <div id="pg_calendar">
+            
             <h2>Weekly</h2>
-            <table id="tbl_weekly">
-                <tr>
-                    <th rel="weekend">Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th rel="weekend">Sat</th>
-                </tr>
-                <tr>
-                    <td rel="0 weekend"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6 weekend"></td>
-                </tr>
-            </table>
+            <table id="tbl_weekly"></table>
 
             <h2>Calendar</h2>
-            <table id="tbl_calendar">
-                <tr>
-                    <th rel="weekend">Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th rel="weekend">Sat</th>
-                </tr>
-                <tr rel="0">
-                    <td rel="0"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6"></td>
-                </tr>
-                <tr rel="1">
-                    <td rel="0"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6"></td>
-                </tr>
-                <tr rel="2">
-                    <td rel="0"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6"></td>
-                </tr>
-                <tr rel="3">
-                    <td rel="0"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6"></td>
-                </tr>
-                <tr rel="4">
-                    <td rel="0"></td>
-                    <td rel="1"></td>
-                    <td rel="2"></td>
-                    <td rel="3"></td>
-                    <td rel="4"></td>
-                    <td rel="5"></td>
-                    <td rel="6"></td>
-                </tr>
-                <tr>
-                    <th rel="weekend">Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th rel="weekend">Sat</th>
-                </tr>
-            </table>
+            <table id="tbl_calendar"></table>
         </div>
 
         <!-- Page Add Ad-Hoc -->
@@ -178,6 +90,13 @@
 
                 <input id="input_adhoc_description" type=text />
                 <label>Description</label>
+
+                <select name="input_adhoc_priority">
+                    <option value="normal" selected>Normal</option>
+                    <option value="low">Low</option>
+                    <option value="high">High</option>
+                </select>
+                <label>Priority</label>
 
                 <br />
                 <button id="input_adhoc_submit">Add Daily Task</button>
@@ -199,7 +118,7 @@
                 <input id="input_daily_repository" type="text" />
                 <label>Repository</label>
 
-                <input id="input_daily_file" type="text" />
+                <input id="input_daily_location" type="text" />
                 <label>Location</label>
 
                 <input id="input_daily_description" type=text />
@@ -237,7 +156,7 @@
                     <input id="input_weekly_repository" type="text" />
                     <label>Repository</label>
     
-                    <input id="input_weekly_file" type="text" />
+                    <input id="input_weekly_location" type="text" />
                     <label>Location</label>
     
                     <input id="input_weekly_description" type=text />
@@ -266,11 +185,18 @@
                 <input id="input_monthly_repository" type="text" />
                 <label>Repository</label>
 
-                <input id="input_monthly_file" type="text" />
+                <input id="input_monthly_location" type="text" />
                 <label>Location</label>
 
                 <input id="input_monthly_description" type=text />
                 <label>Description</label>
+
+                <select name="input_adhoc_priority">
+                    <option value="normal" selected>Normal</option>
+                    <option value="low">Low</option>
+                    <option value="high">High</option>
+                </select>
+                <label>Priority</label>
 
                 <br />
                 <button id="input_monthly_submit">Add Daily Task</button>
@@ -283,7 +209,14 @@
 
             // Define Submit Button Behaviours
             $('#form_daily').submit(function(e){
-
+                if(daily_validate()){
+                    add_daily();
+                    clear_forms();
+                    clear_daily_display($('#today_daily'));
+                    display_daily_today($('#today_daily'));
+                } else {
+                    alert('The form was not completed correctly!');
+                };
                 e.preventDefault();
             });
             $('#form_weekly').submit(function(e){
@@ -312,9 +245,15 @@
             // Add date to header
             $('#date_header').html(dateString_dmyString(new Date()));
 
-            // Add dates to calendar
-            display_calendar_dates();
-            identify_days();
+            // Add buttons to navigation
+            add_navigation_buttons($('nav'));
+
+            // Construct Calendar
+            construct_weekly($('#tbl_weekly'));
+            construct_calendar($('#tbl_calendar'));
+
+            // Show Tasks
+            display_daily_today($('#today_daily'));
 
             // Apply formating
             generic_format();

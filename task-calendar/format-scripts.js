@@ -8,8 +8,8 @@ function generic_format(){
     $('body > div').attr('class', 'w3-container');
     // Tables
     $('table').attr('class', 'w3-table w3-bordered w3-small');
-    $('table [rel~="weekend"]').attr('class', 'w3-flat-clouds');
-    $('#tbl_calendar td[rel~="today"]').attr('class', 'w3-flat-belize-hole');
+    $('table .weekend:not(.today)').addClass('w3-flat-clouds');
+    $('table td.today').addClass('w3-flat-belize-hole');
     // Forms
     $('form').attr('class', 'w3-container w3-padding-16 w3-card-2');
     $('form input[type="text"]').attr('class', 'w3-input w3-margin-top');
@@ -18,4 +18,11 @@ function generic_format(){
     $('form select').attr('class', 'w3-select w3-margin-top');
     $('form button').attr('class', 'w3-button w3-margin-top w3-blue w3-hover-indigo');
     $('form label').attr('class', 'w3-text-grey');
+    // Lists
+    $('ul').attr('class', 'w3-ul');
+    $('ul li[rel="done"]').attr('class', 'w3-text-grey');
+    $('ul li[rel="done"]').wrapInner('<s></s>');
 };
+
+
+
