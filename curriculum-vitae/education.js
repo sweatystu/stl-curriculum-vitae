@@ -71,3 +71,48 @@ var education = [
         , result: "2:1"
     }
 ];
+
+
+function display_education(ul){
+    $.each(education, function(){
+        var txt;
+        txt = '<li>';
+        txt +=  '<h4>' + this.course + '</h4>';
+        txt +=  this.school + '<br />';
+        if(this.qualification != null){
+            txt +=  this.qualification;
+            if(this.result != null){
+                txt +=  ' (' + this.result + ')'
+            };
+            txt +=  '<br />';
+        };
+        txt +=  dateString_monthString(this.date);
+        if(this.modules != null){
+            txt +=  '<br />';
+            txt +=  '<button onclick="toggle_modules($(this));">Modules</button>';
+            txt +=  '<ul>';
+            $.each(this.modules, function(){
+                txt +=  '<li>';
+                txt +=  this.module;
+                if(this.code != null){
+                    txt +=  ' (' + this.code + ')';
+                };
+                if(this.result != null){
+                    txt +=  '<span>' + this.result + '</span>';
+                }
+                txt +=  '</li>';
+            });
+            txt +=  '</ul>';
+        };
+        txt +=  '</li>';
+        ul.append(txt);
+    });
+    ul.find('button').attr('class', 'w3-button w3-blue w3-hover-blue-grey w3-margin-top w3-round');
+    ul.find('button + ul').addClass('w3-panel w3-light-grey w3-border-light-blue w3-leftbar w3-border-right');
+    ul.find('button + ul span').attr('class', 'w3-right');
+    ul.find('button + ul').hide();
+};
+
+function toggle_modules(btn){
+    btn.next('ul').toggle();
+};
