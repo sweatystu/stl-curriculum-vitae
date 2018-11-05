@@ -69,3 +69,61 @@ var refs = [
         }
     }
 ];
+
+
+function display_references(ul){
+    $.each(refs, function(){
+        var txt;
+        var no_authors = this.authors.length - 1;
+        txt = '<li>';
+        switch(true){
+            case this.journal != null:
+                var j = this.journal;
+                $.each(this.authors, function(index){
+                    switch(true){
+                        case index == no_authors:
+                            txt +=  this;
+                            break;
+                        case index == no_authors - 1:
+                            txt +=  this + ' and ';
+                            break;
+                        default:
+                            txt +=  this + ', ';
+                    };
+                });
+                txt +=  ' (' + dateString_yearString(this.date) + ')';
+                txt +=  " '" + this.title + ".'";
+                txt +=  ' <i>' + j.journal + '</i>';
+                txt +=  ', Vol. ' + j.volume.toString();
+                if(j.issue != null){txt +=  '(' + j.issue.toString() + ')';};
+                txt +=  ', pp. ' + j.page;
+                txt +=  '.';
+                break;
+            case this.conference != null:
+                var c = this.conference;
+                $.each(this.authors, function(index){
+                    switch(true){
+                        case index == no_authors:
+                            txt +=  this;
+                            break;
+                        case index == no_authors - 1:
+                            txt +=  this + ' and ';
+                            break;
+                        default:
+                            txt +=  this + ', ';
+                    };
+                });
+                txt +=  ' (' + dateString_yearString(this.date) + ')';
+                txt +=  " '" + this.title + ".'";
+                txt +=  ' Paper presented at: <i>' + c.conference + '</i>.';
+                txt +=  ' ' + c.location + ',';
+                txt +=  ' ' + dateString_daymonthString(this.date);
+                txt +=  '.';
+                break;
+            default:
+                txt +=  'Not Recognised';
+        };
+        txt +=  '</li>';
+        ul.append(txt);
+    });
+};

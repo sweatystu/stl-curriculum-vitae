@@ -42,3 +42,40 @@ var achievements = [
     }
 ];
 
+function display_achievements(ul){
+    $.each(achievements, function(){
+        var txt;
+        txt = '<li><dl>';
+        txt += '<dt><b>What:</b>';
+        if(this.company != null){
+            txt += '<span>' + this.company + '</span>';
+        };
+        txt += '</dt>';
+        txt += '<dd>' + this.what + '.</dd>';
+        if(this.how != null){
+            txt += '<dt><b>How:</b></dt>';
+            txt += '<dd>' + this.how + '.</dd>';
+        };
+        if(this.result != null){
+            txt += '<dt><b>Resulting in:</b></dt>';
+            txt += '<dd>' + this.result + '.</dd>';
+        };
+        if(this.comparison != null){
+            txt += '<dt><b>Compared to:</b></dt>';
+            txt += '<dd>' + this.comparison + '.</dd>';
+        };
+        if(this.skills != null){
+            txt += '<dt><b>Skills Used:</b></dt>';
+            txt += '<dd>';
+            for(i in this.skills){
+                txt += '<span>' + this.skills[i] + '</span>';
+            }
+            txt += '</dd>';
+        };
+        txt += '</dl></li>';
+        ul.append(txt);
+    });
+    ul.find('dt span').attr('class', 'w3-right w3-tag w3-blue w3-wide w3-round');
+    ul.find('dd span').attr('class', 'w3-tag w3-blue-grey w3-round w3-margin-right');
+};
+

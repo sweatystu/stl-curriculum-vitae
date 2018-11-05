@@ -52,3 +52,16 @@ var courses = [
         , provider: "Drivetrain Partnership"
     }
 ];
+
+
+function display_courses(tbl){
+    $.each(courses, function(){
+        var txt;
+        txt = '<tr>';
+        txt +=  '<td>' + dateString_monthString(this.date) + '</td>';
+        txt +=  '<td>' + this.name + '</td>';
+        txt +=  '<td>' + this.provider + '</td>';
+        txt +=  '</tr>';
+        tbl.append(txt);
+    });
+};

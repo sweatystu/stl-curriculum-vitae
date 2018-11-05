@@ -27,3 +27,20 @@ var quals = [
         , result: "Distinction"
     }
 ];
+
+
+function display_qualifications(ul){
+    $.each(quals, function(){
+        var txt;
+        txt = '<li>';
+        txt += this.award;
+        txt += '<br /><span>';
+        txt += this.title;
+        txt += '<br />';
+        txt += dateString_yearString(this.date);
+        txt += ' ' + this.body;
+        txt += '</span></li>';
+        ul.append(txt);
+    });
+    $('#qualifications > ul span').attr('class', 'w3-small');
+};
