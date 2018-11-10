@@ -231,16 +231,7 @@
                 
                 e.preventDefault();
             });
-            $('input[type="number"]').focusout(function(){
-                var cur = $(this).val();
-                var min = parseInt($(this).attr('min'));
-                var max = parseInt($(this).attr('max'));
-                if(cur < min){
-                    $(this).val(min);
-                } else if (cur > max){
-                    $(this).val(max);
-                };
-            });
+            
 
             // Add date to header
             $('#date_header').html(dateString_dmyString(new Date()));

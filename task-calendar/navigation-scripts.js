@@ -11,11 +11,14 @@ function format_nav_buttons(){
     });
 };
 
-function display_page(btn, n){
+function display_page(btn, n, t){
     hide_pages();
     format_nav_buttons();
-    clear_forms();
     btn.addClass('w3-indigo');
+    clear_forms();
+    if(t != null){
+        construct_form($('#' + n + ' form'), t);
+    };
     $('#' + n).show();
 };
 
@@ -23,11 +26,14 @@ function add_navigation_buttons(nv){
     var txt;
     for(i in nav_buttons){
         txt = '<div';
-        txt = txt + ' onclick="display_page($(this), ';
-        txt = txt + "'" + nav_buttons[i].target + "'";
-        txt = txt + ');">';
-        txt = txt + nav_buttons[i].name;
-        txt = txt + '</div>';
+        txt += ' onclick="display_page($(this), ';
+        txt += "'" + nav_buttons[i].target + "'";
+        if(nav_buttons[i].type != null){
+            txt += ", '" + nav_buttons[i].type + "'";
+        };
+        txt += ');">';
+        txt += nav_buttons[i].name;
+        txt += '</div>';
         nv.append(txt);
     };
 };
@@ -45,17 +51,21 @@ var nav_buttons = [
     , {
         name: "Add Ad-Hoc"
         , target: "pg_add_adhoc"
+        , type: "adhoc"
     }
     , {
         name: "Add Daily"
         , target: "pg_add_daily"
+        , type: "daily"
     }
     , {
         name: "Add Weekly"
         , target: "pg_add_weekly"
+        , type: "weekly"
     }
     , {
         name: "Add Monthly"
         , target: "pg_add_monthly"
+        , type: "monthly"
     }
 ];
