@@ -2,15 +2,15 @@
 function dateString_dmyString(dt){
     var txt;
     txt = dt.getDate().toString();
-    txt = txt + ' ' + monthNum_monthName(dt.getMonth(), true);
-    txt = txt + ' ' + dt.getFullYear().toString();
+    txt += ' ' + monthNum_monthName(dt.getMonth(), true);
+    txt += ' ' + dt.getFullYear().toString();
     return txt;
 };
 
 function dateString_dmString(dt){
     var txt;
     txt = dt.getDate().toString();
-    txt = txt + ' ' + monthNum_monthName(dt.getMonth());
+    txt += ' ' + monthNum_monthName(dt.getMonth());
     return txt;
 };
 
@@ -27,44 +27,8 @@ function date_addDays(dt, days){
 function monthNum_monthName(mnth, lng=false){
     // pass the month number and whether the month name should be in the long format or not
     var rtn;
-    switch(mnth){
-        case 0:
-            rtn = 'January';
-            break;
-        case 1:
-            rtn = 'February';
-            break;
-        case 2:
-            rtn = 'March';
-            break;
-        case 3:
-            rtn = 'April';
-            break;
-        case 4:
-            rtn = 'May';
-            break;
-        case 5:
-            rtn = 'June';
-            break;
-        case 6:
-            rtn = 'July';
-            break;
-        case 7:
-            rtn = 'August';
-            break;
-        case 8:
-            rtn = 'September';
-            break;
-        case 9:
-            rtn = 'October';
-            break;
-        case 10:
-            rtn = 'November';
-            break;
-        case 11:
-            rtn = 'December';
-            break;
-    };
+    var month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    rtn = month_names[mnth];
     if(!lng){
         rtn = rtn.substring(0, 3);
     };
