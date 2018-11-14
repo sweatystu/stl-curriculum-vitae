@@ -40,6 +40,9 @@ var skills = [
     , {
         name: "SQL"
     }
+    , {
+        name: "Python"
+    }
 ];
 
 
